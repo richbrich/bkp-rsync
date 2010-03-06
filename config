@@ -1,0 +1,35 @@
+# Configuration file for bck-rsync
+# ensure there are NO SPACES between the equals signs and the key/value
+
+# the network host that contains the share we want to backup to
+backup_host=XXXXXXXXXXXXXXXXXX
+
+# The username we use to log on to the backup host
+# note that the password must be in the defaul keychain
+fileserver_user=XXXXXXXXXXXXXXXX
+
+# This is what gets stored in keychain when the password gets stored
+file_server_srvr=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+# The share as published by the backup_host
+sharepoint=XXXXXXXXXXXXXXXX
+
+# Where on the local host do we mount to
+mountpoint=/Volumes
+
+# The path to the backup disk image (relative to the share)
+backup_image_path=backups/xxxxx_backup.sparsebundle
+
+# when mounting the disk image, this will be the directory in /Volumes
+backup_volume_name=xxxxx_backup
+
+# This is stored in the keychain as the account for the disk image
+backup_image_account=XXXX982x-4XXE-4XXX-BXXX-EEXXXXXXXCFA
+
+
+# Where do we backup up from, relative to $HOME?
+source_dir=/
+
+# To whom do we mail the logfiles
+
+mail_logfile_to=xxxxxxxxxxxxxxxx@xxxxx.com

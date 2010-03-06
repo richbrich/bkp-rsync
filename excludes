@@ -1,0 +1,26 @@
+/Library/Application Support/MobileSync/
+/Library/Application Support/SyncServices/
+/Library/Caches/
+/Library/Mail/Envelope Index
+/Library/Mail/AvailableFeeds
+/Library/Mirrors
+/Library/Breakpad
+/Library/PubSub/Database
+/Library/PubSub/Downloads
+/Library/PubSub/Feeds
+/Library/Safari/Icons.db
+/Library/Safari/HistoryIndex.sk
+/.Spotlight-*/
+/.TemporaryItems/
+/.Trash/
+/.Trashes/
+/.bash_history
+/.dvdcss/
+/.fseventsd
+/.dropbox/
+/.fontconfig/
+Desktop DB
+Desktop DF
+/Virtual Machines/
+/Library/Cookies/
+
