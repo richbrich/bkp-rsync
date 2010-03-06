@@ -1,0 +1,14 @@
+bkp-rsync
+---------
+
+Script to rsync home directory to a dick image on a file server somewhere.
+
+
+1. Put config items in the config file
+2. customize your launchagent file
+3. put the script in ~/Library/Scripts
+4. run launchctl load <launchagent script>
+
+
+
+

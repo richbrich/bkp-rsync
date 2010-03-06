@@ -1,0 +1,2 @@
+* sometimes rsync errors non-fatally. currently this will abaort the script. we need to recover from this.
+* need a README file
