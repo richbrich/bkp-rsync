@@ -3,4 +3,5 @@ we need to recover from this.
 * Document the process for installing this. 
 * Script the process for setting this up
 * Add BSD license and publish.
+* Error checking is incomplete ($?<<8 does not always work)
 
