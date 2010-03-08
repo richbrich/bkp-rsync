@@ -14,9 +14,6 @@
 ##
 ###############################################################################
 
-## TO DO: Document the process for installing this. 
-## TO DO: Preferably script the process for setting this up
-## TO DO: Add BSD license and publish.
 
 use strict;
 

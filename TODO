@@ -1,2 +1,6 @@
-* sometimes rsync errors non-fatally. currently this will abaort the script. we need to recover from this.
-* need a README file
+* sometimes rsync errors non-fatally. currently this will abaort the script. 
+we need to recover from this.
+* Document the process for installing this. 
+* Script the process for setting this up
+* Add BSD license and publish.
+
