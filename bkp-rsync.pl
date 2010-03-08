@@ -29,6 +29,7 @@ my $home_directory = $ENV{'HOME'};
 my $config_file = "$home_directory/.bkp-rsync/config";
 my %Config;
 my $have_errors=0;
+my $exit_code=0;
 
 print "Starting backup\n";
 my $the_date = strftime('%Y-%m-%d-%H%M%S',localtime);
@@ -90,6 +91,7 @@ my @args = ("/usr/local/bin/rsync", "2>&1",  "--archive",
 			$destination);
 			
 my @info = qx (@args);
+$exit_code = $? >> 8;
 
 # print output to logfile
 foreach my $i (@info) {
@@ -97,38 +99,37 @@ foreach my $i (@info) {
 	&logit( "rsync: $i");
 }
 
-unless ($? == 0)  {
+#check exit code from rsync and warn accordingly
+unless ($exit_code == 0)  {
+	&logit ("rsync error: $exit_code : $!"); 
 	$have_errors=1;
-	my $realerror = $? << 8;
-	&logit ("rsync error: $realerror : $!"); 
-	print "Backup failed - see log email\n";
-	&mail_logfile();
-	exit;
 }
 
-
 #reorg directory links
-
 unless (unlink "$basepath/current")  {
 	&logit("Cannot  unlink $basepath/current");
 	$have_errors=1;
 }
 
 unless (symlink "$destination", "$basepath/current")  {
-	&logit("Cannot  unlink $basepath/current");
+	&logit("Cannot  symlink $basepath/current");
 	$have_errors=1;
 }
 
-
 if (&detach_disk_image ())  {
 	$have_errors=1;
-	&mail_logfile();
 	print "Backup failed to detach disk image - see log email\n";
 	exit;
 }
 	
 # mail the logfile and end
-my $success_message = "Backup completed with no errors";
+my $success_message;
+if ($have_errors)  {
+	$success_message = "Backup completed with WITH ERRORS";
+} else {
+	$success_message = "Backup completed with no errors";
+}
+	
 &logit($success_message);
 print "$success_message\n";
 &mail_logfile();
@@ -175,7 +176,7 @@ sub mount_backup_share {
 	system (@args);
 	
 	unless ($? == 0)  {
-		my $realerror = $? << 8;
+		my $realerror = $? >> 8;
 		&logit ("Could not mount backup share: $realerror : $!"); 
 		return 1;
 	}
@@ -191,7 +192,7 @@ sub unmount_backup_share  {
 	system (@args);
 	
 	unless ($? == 0)  {
-		my $realerror = $? << 8;
+		my $realerror = $? >> 8;
 		&logit ("Could not unmount $Config{mountpoint}$Config{sharepoint}: $realerror : $!");
 		return 1;
 	}
@@ -209,13 +210,13 @@ sub attach_disk_image {
     	return 1;
     }
 				
-	my @args = ("/usr/bin/hdiutil",  "attach", "-nobrowse"
+	my @args = ("/usr/bin/hdiutil",  "attach", "-nobrowse", 
 				"\"$Config{mountpoint}/$Config{sharepoint}/$Config{backup_image_path}\"", "2>&1");
 							
 	my @info = qx (@args);
 
 	unless ($? == 0)  {
-		my $realerror = $? << 8;
+		my $realerror = $? >> 8;
 		&logit ("Could not attach $Config{backup_image_path}: $realerror: $!");
 		return 1;
 	}
@@ -239,7 +240,7 @@ sub detach_disk_image {
 	system (@args);
 	
 	unless ($? == 0)  {
-		my $realerror = $? << 8;
+		my $realerror = $? >> 8;
 		&logit ("Could not detach $Config{mountpoint}/$Config{backup_volume_name}: $realerror: $!");
 		return 1;
 	}
