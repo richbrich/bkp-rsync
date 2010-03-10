@@ -6,10 +6,12 @@
 ##
 ## Richard Turnbull
 ##
-## 23 February 2010
+## __DATE__        
 ##
-## Version 0.1dev  - requires rsync >v3.06 in /usr/local/bin/rsync
-##                with patches - see http://www.bombich.com/mactips/rsync.html
+## __VERSION__
+##
+## Requires rsync >v3.06 in /usr/local/bin/rsync
+## with patches - see http://www.bombich.com/mactips/rsync.html
 ##
 ##
 ###############################################################################
