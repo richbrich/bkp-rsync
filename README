@@ -1,5 +1,5 @@
 bkp-rsync
----------
+=========
 
 Script to rsync home directory to a dick image on a file server somewhere.
 
