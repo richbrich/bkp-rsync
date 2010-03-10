@@ -13,7 +13,7 @@ git checkout master
 status=`git status --porcelain`
 if [ "$status" != "" ];  then
 	echo "** Tree not ready. stopping"
-#	exit
+	exit
 fi
 
 # Tag
