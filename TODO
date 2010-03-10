@@ -1,4 +1,5 @@
 * Finish the README to be step by step instructions 
 * Script for installation / creation of disk images etc.
 * Add BSD license and publish.
+* Add a more generic way of parsing / deleting files in release.sh
 
