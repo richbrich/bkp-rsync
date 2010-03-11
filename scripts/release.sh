@@ -53,6 +53,9 @@ git checkout $tag
 # copy the files over
 cp -R * $destination_folder
 
+#go back to master
+git checkout master
+
 #delete the build_scripts folder
 echo "removing build scripts"
 rm -r "$destination_folder/scripts"
